@@ -3,12 +3,13 @@
 
 #include <QGraphicsRectItem>
 #include <QKeyEvent>
+#include <QPixmap>
 
 
-class Player : public QGraphicsRectItem{
+class Player : public QObject, public QGraphicsRectItem{
+    Q_OBJECT
 public:
-    Player(QGraphicsItem* parent = nullptr);
-
+    Player(QGraphicsItem* parent = 0);
     void keyPressEvent (QKeyEvent* event);
 
 };
