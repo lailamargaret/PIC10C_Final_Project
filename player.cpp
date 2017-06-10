@@ -12,12 +12,15 @@ Player::Player(QGraphicsItem *parent)
 
 void Player::keyPressEvent(QKeyEvent * event)
 {
-   if (event -> key() == Qt::Key_Left){
+  // bool is_launched = false;
+  // if (event -> key() == Qt::Key_Space)
+    //   is_launched = true;
+   if (event -> key() == Qt::Key_Left){// && is_launched){
        if(pos().x() > 10)
             setPos(x()-20, y());
    }
 
-   else if (event -> key() == Qt::Key_Right){
+   if (event -> key() == Qt::Key_Right){// && is_launched){
        if(pos().x() +100 < 790)
             setPos(x()+20, y());
    }

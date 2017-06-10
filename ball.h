@@ -5,13 +5,23 @@
 #include <QGraphicsRectItem>
 
 class Ball : public QObject, public QGraphicsRectItem{
-
+    Q_OBJECT
 public:
-    Ball();
+    Ball(QGraphicsItem* parent = 0);
+
+    double getCenterX();
+
+public slots:
+    void move();
+
 
 private:
-    int x_velocity;
-    int y_velocity;
+    double x_velocity;
+    double y_velocity;
+
+    void hit_wall();
+    void hit_player();
+    void hit_block();
 };
 
 

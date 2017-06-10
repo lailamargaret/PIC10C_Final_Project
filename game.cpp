@@ -10,15 +10,6 @@ Game::Game(QWidget *parent): QGraphicsView(parent){
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setScene(scene);
-
-   for (int i = 20; i < 680; i+=120){
-       for (int j = 20; j < 200; j+=50){
-       Block * block = new Block();
-       block -> setPos(i, j);
-       scene -> addItem(block);
-   }
-   }
-
 }
 
 void Game::play(){
@@ -31,6 +22,14 @@ void Game::play(){
     Ball * ball = new Ball();
     ball -> setPos(290, 530);
     scene -> addItem(ball);
+
+    for (int i = 20; i < 680; i+=120){
+        for (int j = 20; j < 200; j+=50){
+        Block * block = new Block();
+        block -> setPos(i, j);
+        scene -> addItem(block);
+    }
+    }
 
 
 }
