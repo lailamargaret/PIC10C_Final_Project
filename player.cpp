@@ -6,7 +6,7 @@
 
 Player::Player(QGraphicsItem *parent)
 {
-    setRect(0,0,1000,20);
+    setRect(0,0,150,20);
 
 }
 
@@ -17,12 +17,12 @@ void Player::keyPressEvent(QKeyEvent * event)
     //   is_launched = true;
    if (event -> key() == Qt::Key_Left){// && is_launched){
        if(pos().x() > 10)
-            setPos(x()-20, y());
+            setPos(x()-40, y());
    }
 
    if (event -> key() == Qt::Key_Right){// && is_launched){
        if(pos().x() +100 < 790)
-            setPos(x()+20, y());
+            setPos(x()+40, y());
    }
 }
 
