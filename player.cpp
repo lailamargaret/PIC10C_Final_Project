@@ -6,7 +6,7 @@
 
 Player::Player(QGraphicsItem *parent)
 {
-    setRect(0,0,100,20);
+    setRect(0,0,1000,20);
 
 }
 
