@@ -9,7 +9,7 @@ extern Game* game;
 Ball::Ball(QGraphicsItem * parent) : QGraphicsEllipseItem(parent), QObject(){
     setRect(0,0,20,20);
 
-    x_velocity = -5;
+    x_velocity = 0;
     y_velocity = -5;
 
     QTimer* timer = new QTimer();
@@ -17,14 +17,15 @@ Ball::Ball(QGraphicsItem * parent) : QGraphicsEllipseItem(parent), QObject(){
     timer -> start(15);
 }
 
-/*double Ball::getCenterX(){
+double Ball::getCenterX(){
     return x()+ rect().width()/2;
-}*/
+}
 
 void Ball::move(){
     moveBy(x_velocity, y_velocity);
     hit_wall();
     hit_block();
+    hit_player();
 
 }
 
@@ -47,7 +48,7 @@ void Ball::hit_wall()
    if (mapToScene(rect().topLeft()).y() <= 0){
        y_velocity = -1*y_velocity;
 
-   //out of bounds
+   //out of bounds, bottom, stop NOT WORKING
        if(mapToScene(rect().bottomRight()).y() > 100){
            x_velocity = 0;
            y_velocity = 0;
@@ -83,3 +84,16 @@ void Ball::hit_block(){
 
 }
 
+void Ball::hit_player(){
+    QList <QGraphicsItem*> CI = collidingItems();
+    for (int i = 0, n = CI.size(); i < n; ++i){
+        Player * player = dynamic_cast<Player*>(CI[i]);
+        if(player){
+            y_velocity*=-1;
+
+            double change_in_x = (getCenterX() - player->getCenterX());
+            x_velocity = (x_velocity + change_in_x)/15;
+            return;
+        }
+    }
+}

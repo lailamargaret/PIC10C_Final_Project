@@ -25,3 +25,8 @@ void Player::keyPressEvent(QKeyEvent * event)
             setPos(x()+20, y());
    }
 }
+
+double Player::getCenterX()
+{
+    return pos().x()/2;
+}
