@@ -6,7 +6,7 @@
 
 extern Game* game;
 
-Ball::Ball(QGraphicsItem * parent) : QGraphicsRectItem(parent), QObject(){
+Ball::Ball(QGraphicsItem * parent) : QGraphicsEllipseItem(parent), QObject(){
     setRect(0,0,20,20);
 
     x_velocity = 0;
@@ -24,6 +24,7 @@ double Ball::getCenterX(){
 void Ball::move(){
     moveBy(x_velocity, y_velocity);
     hit_wall();
+    hit_block();
 
 }
 
@@ -54,11 +55,13 @@ void Ball::hit_block(){
   for (int i = 0, n = colliding_items.size(); i < n; ++i){
       Block * block = dynamic_cast<Block*>(colliding_items[i]);
       if (block){
-            game -> scene ->removeItem(block);
+           // game -> scene ->removeItem(block);
             delete colliding_items[i];
+           y_velocity *=-1;
             return;
         }
   }
+
 }
 
 
